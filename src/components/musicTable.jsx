@@ -4,9 +4,7 @@ import axios from 'axios';
 class MusicTable extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            allMusic: null
-        }
+        this.state = {}
     }
 
     componentDidMount(){
@@ -16,7 +14,6 @@ class MusicTable extends Component {
     async getAllMusic(){
         try{
             let response = await axios.get('http://localhost:8000/music/')
-            console.log(response.data)
             this.setState({
                 allMusic: response.data
             })
@@ -26,9 +23,22 @@ class MusicTable extends Component {
         }
     }
 
+    makeTable(){
+        let header =[];
+        for (let key in this.state.allMusic[0])
+            header.push(<th>{key}</th>)
+        return(
+            <table className="table">
+                <thead><tr>{header}</tr></thead>
+            </table>
+        )
+    }
+
     render(){
         return(
-            <div>{JSON.stringify(this.state.allMusic)}</div>
+            <React.Fragment>
+                {this.state.allMusic ? this.makeTable() : <h3 className="text-center">Generating table...</h3>}
+            </React.Fragment>
         )
     }
 }
