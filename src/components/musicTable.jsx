@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import DeleteButton from './deleteButton';
-import MusicTableRows from './musicTableRows';
+import MusicTableBody from './musicTableBody';
+import NewSongForm from './newSongForm';
 
 class MusicTable extends Component {
     constructor(props) {
@@ -39,15 +39,16 @@ class MusicTable extends Component {
         return(
             <React.Fragment>
                 {this.state.allMusic ? 
-                    <table className="table">
+                    <table className="table table-striped table-bordered">
                         <thead>
                             {this.makeHeader()}
                         </thead>
                         <tbody>
-                            <MusicTableRows data={this.state.allMusic} refresh={this.getAllMusic}/>
+                            <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/>
                         </tbody>
                     </table> : 
                     <h3 className="text-center">Generating table...</h3>}
+                <NewSongForm refreshTable={this.getAllMusic}/>
             </React.Fragment>
             //Do you pretty much always need conditional rendering when displaying data from API calls?
         )

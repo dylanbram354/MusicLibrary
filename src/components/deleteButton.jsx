@@ -23,9 +23,10 @@ class DeleteButton extends Component {
     async deleteSong(){
         try{
             let response = await axios.delete(`http://127.0.0.1:8000/music/${this.songId}/`);
-            if (response.status == '200'){
-                alert('Song deleted.');
+            // eslint-disable-next-line
+            if (response.status == 200){
                 this.props.refresh();
+                alert('Song deleted.');
             }
         }
         catch(ex){
@@ -36,7 +37,7 @@ class DeleteButton extends Component {
 
     render(){
         return(
-            <button onClick={this.getSongToDelete.bind(this)}>Delete Song</button>
+            <button className="btn btn-danger" onClick={this.getSongToDelete.bind(this)}>Delete Song</button>
         )
     }
 }
