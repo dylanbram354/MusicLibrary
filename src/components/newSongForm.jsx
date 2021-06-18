@@ -8,19 +8,38 @@ class NewSongForm extends Component{
             title: null,
             artist: null,
             album: null,
-            release_date: null
+            release_date: null,
+            errors: {
+                title: null,
+                artist: null,
+                album: null
+            }
         }
     }
 
     handleChange = (event) => {
+        let errors = this.state.errors;
+
+        switch(event.target.name){
+            case 'title':
+                errors.title = event.target.value.length < 2 ? 'Title must be at least 2 characters.' : null;
+                break;
+            case 'artist':
+                errors.artist = event.target.value.length < 2 ? 'Artist must be at least 2 characters.' : null;
+                break;
+        }
+
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+            errors: errors
         })
     }
 
     async postNewSong(){
+        let newSong = Object.assign({},this.state);
+        newSong.errors = null;
         try{
-            let response = await axios.post('http://127.0.0.1:8000/music/', this.state);
+            let response = await axios.post('http://127.0.0.1:8000/music/', newSong);
             if (response.status == 201){
                 alert(`"${this.state.title}" by ${this.state.artist} added to database!`)
                 this.props.refreshTable();
@@ -37,8 +56,18 @@ class NewSongForm extends Component{
         }
     }
 
+    isInvalid(){
+        if (this.state.errors.title || this.state.errors.artist || !this.state.album || !this.state.release_date){
+            return true;
+        }
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
+        if (this.isInvalid()){
+            alert('Please make sure all fields have valid entries.');
+            return
+        }
         this.postNewSong();
     }
 
@@ -47,12 +76,22 @@ class NewSongForm extends Component{
             <form className="row" onSubmit={(event) => this.handleSubmit(event)}>
                 <h3 className="text-center" >Add New Song</h3>
                 <div className="form-group col-3">
-                    <label for="title">Song Title</label>
-                    <input type="text" className="form-control" name="title" onChange={this.handleChange} value={this.state.title} />
+                    <div>
+                        <label for="title">Song Title</label>
+                        <input type="text" className="form-control" name="title" onChange={this.handleChange} value={this.state.title} />
+                    </div>
+                    <div>
+                        {this.state.errors.title ? <p className="text-danger">{this.state.errors.title}</p> : ''}
+                    </div>
                 </div>
                 <div className="form-group col-3">
-                    <label for="artist">Artist</label>
-                    <input type="text" className="form-control" name="artist" onChange={this.handleChange} value={this.state.artist} />
+                    <div>
+                        <label for="artist">Artist</label>
+                        <input type="text" className="form-control" name="artist" onChange={this.handleChange} value={this.state.artist} />
+                    </div>
+                    <div>
+                        {this.state.errors.artist ? <p className="text-danger">{this.state.errors.artist}</p> : ''}
+                    </div>
                 </div>
                 <div className="form-group col-3">
                     <label for="album">Album</label>
