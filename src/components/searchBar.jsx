@@ -38,9 +38,8 @@ class SearchBar extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.isFiltered();
         let filteredSongs = this.filterData();
-        this.props.filterTable(filteredSongs);
+        this.props.isFiltered(filteredSongs);
     }
 
     render(){

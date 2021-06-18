@@ -43,12 +43,8 @@ class MusicTable extends Component {
         return(<thead><tr>{header}</tr></thead>);
     }
 
-    isFiltered = () => {
-        this.setState({filtered:true})
-    }
-
-    setFilteredSongs = (songs) => {
-        this.setState({filteredMusic: songs})
+    isFiltered = (songs) => {
+        this.setState({filtered:true, filteredMusic: songs})
     }
 
     fillTable = (songs) => {
@@ -79,18 +75,21 @@ class MusicTable extends Component {
                         <table className="table table-striped table-bordered">
                             {this.state.filtered ? this.fillTable(this.state.filteredMusic) : this.fillTable(this.state.allMusic)}
                         </table>
-                    </div> : 
-                    <h3 className="text-center">Generating table...</h3>}
+                    </div>
+                    : 
+                    <h3 className="text-center">Generating table...</h3>
+                    }
                 {this.state.filtered ? 
                     <div className="d-flex justify-content-center mt-5">
                         <button className="btn btn-success" onClick={() => this.getAllMusic()}>Go Back</button>
-                    </div> : 
+                    </div>  
+                    : 
                     <React.Fragment>
                         <NewSongForm refreshTable={this.getAllMusic}/> 
-                        <SearchBar allMusic={this.state.allMusic} isFiltered={this.isFiltered} filterTable={this.setFilteredSongs} refreshTable={() => this.getAllMusic}/>
-                    </React.Fragment>}
+                        <SearchBar allMusic={this.state.allMusic} isFiltered={this.isFiltered}/>
+                    </React.Fragment>
+                    }
             </React.Fragment>
-            //Do you pretty much always need conditional rendering when displaying data from API calls?
         )
     }
 }
