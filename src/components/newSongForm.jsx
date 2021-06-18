@@ -101,7 +101,7 @@ class NewSongForm extends Component{
                     <input type="date" className="form-control" name="release_date" onChange={this.handleChange} value={this.state.release_date} />
                 </div>
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-primary w-25">Submit Song</button>
+                    <button type="submit" className="btn btn-primary w-25">Submit New Song</button>
                 </div>
             </form>
         )

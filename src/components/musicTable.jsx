@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import MusicTableBody from './musicTableBody';
 import NewSongForm from './newSongForm';
+import SearchBar from './searchBar'
 
 class MusicTable extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            filtered: false,
+            filteredMusic: null
+        };
         this.getAllMusic = this.getAllMusic.bind(this);
     }
 
@@ -18,7 +22,9 @@ class MusicTable extends Component {
         try{
             let response = await axios.get('http://127.0.0.1:8000/music/');
             this.setState({
-                allMusic: response.data
+                allMusic: response.data,
+                filtered: false,
+                filteredMusic: null
             })
         }
         catch (ex) {
@@ -35,6 +41,20 @@ class MusicTable extends Component {
         return(<tr>{header}</tr>);
     }
 
+    isFiltered = () => {
+        this.setState({filtered:true})
+    }
+
+    setFilteredSongs = (songs) => {
+        this.setState({filteredMusic: songs})
+    }
+
+    fillTable = (songs) => {
+        return(
+            <MusicTableBody data={songs} refreshTable={this.getAllMusic}/> //passing refresh function down to delete/like buttons.. Need to find out how to refresh FILTERED table
+        )
+    }
+
     render(){
         return(
             <React.Fragment>
@@ -45,12 +65,14 @@ class MusicTable extends Component {
                                 {this.makeHeader()}
                             </thead>
                             <tbody>
-                                <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/>
+                                {this.state.filtered ? this.fillTable(this.state.filteredMusic) : this.fillTable(this.state.allMusic)}
+                                {/* <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/> */}
                             </tbody>
                         </table>
                     </div> : 
                     <h3 className="text-center">Generating table...</h3>}
                 <NewSongForm refreshTable={this.getAllMusic}/>
+                <SearchBar allMusic={this.state.allMusic} isFiltered={this.isFiltered} filterTable={this.setFilteredSongs}/>
             </React.Fragment>
             //Do you pretty much always need conditional rendering when displaying data from API calls?
         )
