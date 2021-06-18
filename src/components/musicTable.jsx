@@ -39,14 +39,16 @@ class MusicTable extends Component {
         return(
             <React.Fragment>
                 {this.state.allMusic ? 
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            {this.makeHeader()}
-                        </thead>
-                        <tbody>
-                            <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/>
-                        </tbody>
-                    </table> : 
+                    <div className="table-responsive">
+                        <table className="table table-striped table-bordered">
+                            <thead>
+                                {this.makeHeader()}
+                            </thead>
+                            <tbody>
+                                <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/>
+                            </tbody>
+                        </table>
+                    </div> : 
                     <h3 className="text-center">Generating table...</h3>}
                 <NewSongForm refreshTable={this.getAllMusic}/>
             </React.Fragment>

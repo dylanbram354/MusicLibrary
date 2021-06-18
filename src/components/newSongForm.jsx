@@ -11,8 +11,7 @@ class NewSongForm extends Component{
             release_date: null,
             errors: {
                 title: null,
-                artist: null,
-                album: null
+                artist: null
             }
         }
     }
@@ -65,7 +64,7 @@ class NewSongForm extends Component{
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.isInvalid()){
-            alert('Please make sure all fields have valid entries.');
+            alert('Please make sure all fields have been completed.');
             return
         }
         this.postNewSong();
@@ -75,7 +74,7 @@ class NewSongForm extends Component{
         return(
             <form className="row" onSubmit={(event) => this.handleSubmit(event)}>
                 <h3 className="text-center" >Add New Song</h3>
-                <div className="form-group col-3">
+                <div className="form-group col-sm-3">
                     <div>
                         <label for="title">Song Title</label>
                         <input type="text" className="form-control" name="title" onChange={this.handleChange} value={this.state.title} />
@@ -84,7 +83,7 @@ class NewSongForm extends Component{
                         {this.state.errors.title ? <p className="text-danger">{this.state.errors.title}</p> : ''}
                     </div>
                 </div>
-                <div className="form-group col-3">
+                <div className="form-group col-sm-3">
                     <div>
                         <label for="artist">Artist</label>
                         <input type="text" className="form-control" name="artist" onChange={this.handleChange} value={this.state.artist} />
@@ -93,11 +92,11 @@ class NewSongForm extends Component{
                         {this.state.errors.artist ? <p className="text-danger">{this.state.errors.artist}</p> : ''}
                     </div>
                 </div>
-                <div className="form-group col-3">
+                <div className="form-group col-sm-3">
                     <label for="album">Album</label>
                     <input type="text" className="form-control" name="album" onChange={this.handleChange} value={this.state.album} />
                 </div>
-                <div className="form-group col-3">
+                <div className="form-group col-sm-3">
                     <label for="release_date">Release Date</label>
                     <input type="date" className="form-control" name="release_date" onChange={this.handleChange} value={this.state.release_date} />
                 </div>
