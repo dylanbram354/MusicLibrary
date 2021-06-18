@@ -19,9 +19,19 @@ class SearchBar extends React.Component{
         let allMusic = this.props.allMusic.slice();
         let filteredMusic = allMusic.filter((song) => {
             let arrayOfValues = Object.values(song);
-            if (arrayOfValues.includes(this.state.searchTerm)){ //figure out how to disregard spaces, use .upper, etc.
-                return true
+            let match = false;
+            for (let i=0; i<arrayOfValues.length; i++){
+                if ((typeof arrayOfValues[i]) == 'string' && arrayOfValues[i].toUpperCase() == this.state.searchTerm.toUpperCase()){
+                    match = true;
+                    { break }
+                }
             }
+            if (match){
+                return true;
+            }
+            // if (arrayOfValues.includes(this.state.searchTerm)){
+            //     return true
+            // }
         })
         return filteredMusic;
     }
@@ -37,7 +47,7 @@ class SearchBar extends React.Component{
         return(
             <React.Fragment>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <h3 className="text-center mt-5">Search Database</h3>
+                    <h3 className="text-center mt-5">Filter Database</h3>
                     <p className="text-center">Enter title, artist, album, or release date (yyyy-mm-dd).</p>
                     <div className="form-group d-flex justify-content-center">
                         <div>

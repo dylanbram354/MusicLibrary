@@ -40,7 +40,7 @@ class MusicTable extends Component {
         if (!this.state.filtered){
             header.push(<React.Fragment><th></th><th></th></React.Fragment>);
         }
-        return(<tr>{header}</tr>);
+        return(<thead><tr>{header}</tr></thead>);
     }
 
     isFiltered = () => {
@@ -52,9 +52,22 @@ class MusicTable extends Component {
     }
 
     fillTable = (songs) => {
-        return(
-            <MusicTableBody data={songs} refreshTable={this.getAllMusic} isFiltered = {this.state.filtered}/> //passing refresh function down to delete/like buttons.. Need to find out how to refresh FILTERED table
-        )
+        if (songs.length == 0){
+            return (
+                <div>
+                    <h2 className="text-center">No matches found!</h2>
+                </div>)
+        }
+        else{
+            return(
+                <React.Fragment>
+                    {this.makeHeader()}
+                    <tbody>
+                        <MusicTableBody data={songs} refreshTable={this.getAllMusic} isFiltered = {this.state.filtered}/>
+                    </tbody>
+                </React.Fragment>
+            )
+        }
     }
 
     render(){
@@ -64,13 +77,7 @@ class MusicTable extends Component {
                 {this.state.allMusic ? 
                     <div className="table-responsive">
                         <table className="table table-striped table-bordered">
-                            <thead>
-                                {this.makeHeader()}
-                            </thead>
-                            <tbody>
-                                {this.state.filtered ? this.fillTable(this.state.filteredMusic) : this.fillTable(this.state.allMusic)}
-                                {/* <MusicTableBody data={this.state.allMusic} refreshTable={this.getAllMusic}/> */}
-                            </tbody>
+                            {this.state.filtered ? this.fillTable(this.state.filteredMusic) : this.fillTable(this.state.allMusic)}
                         </table>
                     </div> : 
                     <h3 className="text-center">Generating table...</h3>}
