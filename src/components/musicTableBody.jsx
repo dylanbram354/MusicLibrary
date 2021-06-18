@@ -1,6 +1,7 @@
 import React from 'react';
 import DeleteButton from './deleteButton';
 import LikeButton from './likeButton';
+import UnlikeButton from './unlikeButton';
 
 function MusicTableBody(props){
     let songsArray = props.data;
@@ -14,7 +15,12 @@ function MusicTableBody(props){
         row.push(
             <React.Fragment>
                 <td className="text-center"><DeleteButton id={song.id} refresh={props.refreshTable}/></td>
-                <td className="text-center"><LikeButton id={song.id} refresh={props.refreshTable}/></td>
+                <td>
+                    <div className="d-flex justify-content-around">
+                    <LikeButton id={song.id} refresh={props.refreshTable}/>
+                    <UnlikeButton id={song.id} refresh={props.refreshTable}/>
+                    </div>
+                </td>
             </React.Fragment>
         )
         

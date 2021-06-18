@@ -1,15 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 
-class LikeButton extends React.Component{
+class UnlikeButton extends React.Component{
     constructor(props){
         super(props);
         this.songId = props.id;
     }
 
-    async likeSong(){
+    async unlikeSong(){
         try{
-            let response = await axios.get(`http://127.0.0.1:8000/music/like/${this.songId}/`);
+            let response = await axios.get(`http://127.0.0.1:8000/music/unlike/${this.songId}/`);
             if (response.status == 200){
                 this.props.refresh();
             }
@@ -21,9 +21,9 @@ class LikeButton extends React.Component{
 
     render(){
         return(
-            <button className="btn btn-success btn-sm" onClick={this.likeSong.bind(this)}>Like</button>
+            <button className="btn btn-warning btn-sm" onClick={this.unlikeSong.bind(this)}>Unlike</button>
         )
     }
 }
 
-export default LikeButton
+export default UnlikeButton
