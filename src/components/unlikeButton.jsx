@@ -15,7 +15,7 @@ class UnlikeButton extends React.Component{
             }
         }
         catch(ex){
-            alert('Error in API call! Cannot find song.');
+            alert('Error! Song cannot be found, or song already has zero likes.');
         }
     }
 

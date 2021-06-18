@@ -10,7 +10,6 @@ class App extends Component {
     render(){
         return(
             <React.Fragment>
-                <h1 className="text-center"> Music Database</h1>
                 <MusicTable />
             </React.Fragment>
         )
