@@ -31,7 +31,7 @@ class MusicTable extends Component {
         for (let key in this.state.allMusic[0]){
             header.push(<th>{key}</th>);
         }
-        header.push(<th></th>);
+        header.push(<React.Fragment><th></th><th></th></React.Fragment>);
         return(<tr>{header}</tr>);
     }
 
