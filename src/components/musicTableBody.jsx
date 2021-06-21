@@ -19,7 +19,7 @@ function MusicTableBody(props){
                     <td>
                         <div className="d-flex justify-content-around">
                             <DeleteButton id={song.id} refresh={props.refreshTable}/>
-                            <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target={"#"+song.id}>Update Song</button>
+                            <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target={"#"+song.id}>Edit Song</button>
                             <UpdateModal song={song} refresh={props.refreshTable}/> 
                         </div>
                     </td>
