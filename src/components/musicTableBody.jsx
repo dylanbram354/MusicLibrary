@@ -19,14 +19,14 @@ function MusicTableBody(props){
                     <td>
                         <div className="d-flex justify-content-around">
                             <DeleteButton id={song.id} refresh={props.refreshTable}/>
-                            <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target={"#"+song.id}>Edit Song</button>
+                            <button type="button" style={{margin:'2%'}} className="btn btn-info btn-sm" data-toggle="modal" data-target={"#"+song.id}>Edit</button>
                             <UpdateModal song={song} refresh={props.refreshTable}/> 
                         </div>
                     </td>
                     <td>
                         <div className="d-flex justify-content-around">
-                        <LikeButton id={song.id} refresh={props.refreshTable}/>
-                        {song.likes > 0 ? <UnlikeButton id={song.id} refresh={props.refreshTable}/> : ''}
+                            <LikeButton id={song.id} refresh={props.refreshTable}/>
+                            {song.likes > 0 ? <UnlikeButton id={song.id} refresh={props.refreshTable}/> : ''}
                         </div>
                     </td>
                     

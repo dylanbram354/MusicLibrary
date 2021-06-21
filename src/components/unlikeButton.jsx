@@ -21,7 +21,7 @@ class UnlikeButton extends React.Component{
 
     render(){
         return(
-            <button className="btn btn-warning btn-sm" onClick={this.unlikeSong.bind(this)}>Unlike</button>
+            <button className="btn btn-warning btn-sm" style={{margin:'2%'}} onClick={this.unlikeSong.bind(this)}>Unlike</button>
         )
     }
 }

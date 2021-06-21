@@ -21,7 +21,7 @@ class LikeButton extends React.Component{
 
     render(){
         return(
-            <button className="btn btn-success btn-sm" onClick={this.likeSong.bind(this)}>Like</button>
+            <button className="btn btn-success btn-sm" style={{margin:'2%'}} onClick={this.likeSong.bind(this)}>Like</button>
         )
     }
 }

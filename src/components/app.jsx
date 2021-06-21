@@ -68,7 +68,7 @@ class App extends Component {
 
     render(){
         return(
-            <React.Fragment>
+            <div>
                 {this.state.filtered ? <h1 className="text-center">Search Results</h1> : <h1 className="text-center">Music Database</h1>}
                 {this.state.allMusic ? 
                     <div className="table-responsive">
@@ -89,7 +89,7 @@ class App extends Component {
                         <SearchBar allMusic={this.state.allMusic} isFiltered={this.isFiltered}/>
                     </React.Fragment>
                     }
-            </React.Fragment>
+            </div>
         )
     }
 }
