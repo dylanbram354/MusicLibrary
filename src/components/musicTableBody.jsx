@@ -6,7 +6,7 @@ import UpdateModal from './updateModal';
 
 function MusicTableBody(props){
     let songsArray = props.data;
-    let tableBody = songsArray.map((song) => { // '(song) => {}' same as 'function(song) {}'
+    let tableBody = songsArray.map((song) => { 
         let row = [];
         for (let attribute in song){
             row.push(
@@ -20,7 +20,7 @@ function MusicTableBody(props){
                         <div className="d-flex justify-content-around">
                             <DeleteButton id={song.id} refresh={props.refreshTable}/>
                             <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target={"#"+song.id}>Update Song</button>
-                            <UpdateModal id={song.id} refresh={props.refreshTable}/>
+                            <UpdateModal song={song} refresh={props.refreshTable}/> 
                         </div>
                     </td>
                     <td>
