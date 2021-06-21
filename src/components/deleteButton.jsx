@@ -37,7 +37,7 @@ class DeleteButton extends Component {
 
     render(){
         return(
-            <button className="btn btn-danger" onClick={this.getSongToDelete.bind(this)}>Delete Song</button>
+            <button className="btn btn-danger btn-sm" onClick={this.getSongToDelete.bind(this)}>Delete Song</button>
         )
     }
 }

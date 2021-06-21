@@ -2,6 +2,7 @@ import React from 'react';
 import DeleteButton from './deleteButton';
 import LikeButton from './likeButton';
 import UnlikeButton from './unlikeButton';
+import UpdateModal from './updateModal';
 
 function MusicTableBody(props){
     let songsArray = props.data;
@@ -15,13 +16,20 @@ function MusicTableBody(props){
         if (!props.isFiltered){
             row.push(
                 <React.Fragment>
-                    <td className="text-center"><DeleteButton id={song.id} refresh={props.refreshTable}/></td>
+                    <td>
+                        <div className="d-flex justify-content-around">
+                            <DeleteButton id={song.id} refresh={props.refreshTable}/>
+                            <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target={"#"+song.id}>Update Song</button>
+                            <UpdateModal id={song.id} refresh={props.refreshTable}/>
+                        </div>
+                    </td>
                     <td>
                         <div className="d-flex justify-content-around">
                         <LikeButton id={song.id} refresh={props.refreshTable}/>
                         {song.likes > 0 ? <UnlikeButton id={song.id} refresh={props.refreshTable}/> : ''}
                         </div>
                     </td>
+                    
                 </React.Fragment>
             )
         }
@@ -30,7 +38,10 @@ function MusicTableBody(props){
         )
     })
     return(
-        <React.Fragment>{tableBody}</React.Fragment>
+        <React.Fragment>
+            {tableBody}
+        </React.Fragment>
+        
     )
 }
 
