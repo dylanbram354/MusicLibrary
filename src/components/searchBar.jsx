@@ -4,8 +4,7 @@ class SearchBar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            searchTerm: null,
-            errors: null
+            searchTerm: null
         }
     }
 
@@ -29,9 +28,6 @@ class SearchBar extends React.Component{
             if (match){
                 return true;
             }
-            // if (arrayOfValues.includes(this.state.searchTerm)){
-            //     return true
-            // }
         })
         return filteredMusic;
     }
@@ -51,9 +47,6 @@ class SearchBar extends React.Component{
                     <div className="form-group d-flex justify-content-center">
                         <div>
                             <input type="text" className="form-control" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm} />
-                        </div>
-                        <div>
-                            {this.state.errors ? <p className="text-danger">{this.state.errors}</p> : ''}
                         </div>
                     </div>
                     <div className="d-flex justify-content-center">

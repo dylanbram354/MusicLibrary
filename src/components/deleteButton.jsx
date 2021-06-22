@@ -26,7 +26,6 @@ class DeleteButton extends Component {
             // eslint-disable-next-line
             if (response.status == 200){
                 this.props.refresh();
-                alert('Song deleted.');
             }
         }
         catch(ex){

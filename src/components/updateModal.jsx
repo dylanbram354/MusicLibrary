@@ -68,53 +68,51 @@ class UpdateModal extends React.Component{
         return(
             <div className="modal" id={this.props.song.id} role="dialog">
                 <div className="modal-dialog">
-                
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h4 className="modal-title">Update "{this.props.song.title}":</h4>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title">Update "{this.props.song.title}":</h4>
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={(event) => this.handleSubmit(event)}>
+                                <div className="row">
+                                    <div className="form-group col-sm-6">
+                                        <div>
+                                            <label for="title">Song Title</label>
+                                            <input type="text" className="form-control" name="title" onChange={this.handleChange} value={this.state.title} />
+                                        </div>
+                                        <div>
+                                            {this.state.errors.title ? <p className="text-danger">{this.state.errors.title}</p> : ''}
+                                        </div>
+                                    </div>
+                                    <div className="form-group col-sm-6">
+                                        <div>
+                                            <label for="artist">Artist</label>
+                                            <input type="text" className="form-control" name="artist" onChange={this.handleChange} value={this.state.artist} />
+                                        </div>
+                                        <div>
+                                            {this.state.errors.artist ? <p className="text-danger">{this.state.errors.artist}</p> : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="form-group col-sm-6">
+                                        <label for="album">Album</label>
+                                        <input type="text" className="form-control" name="album" onChange={this.handleChange} value={this.state.album} />
+                                    </div>
+                                    <div className="form-group col-sm-6">
+                                        <label for="release_date">Release Date</label>
+                                        <input type="date" className="form-control" name="release_date" onChange={this.handleChange} value={this.state.release_date} />
+                                    </div>
+                                    <div className="d-flex justify-content-center">
+                                        <button type="submit" className="btn btn-primary">Submit Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div className="modal-body">
-                        <form onSubmit={(event) => this.handleSubmit(event)}>
-                            <div className="row">
-                                <div className="form-group col-sm-6">
-                                    <div>
-                                        <label for="title">Song Title</label>
-                                        <input type="text" className="form-control" name="title" onChange={this.handleChange} value={this.state.title} />
-                                    </div>
-                                    <div>
-                                        {this.state.errors.title ? <p className="text-danger">{this.state.errors.title}</p> : ''}
-                                    </div>
-                                </div>
-                                <div className="form-group col-sm-6">
-                                    <div>
-                                        <label for="artist">Artist</label>
-                                        <input type="text" className="form-control" name="artist" onChange={this.handleChange} value={this.state.artist} />
-                                    </div>
-                                    <div>
-                                        {this.state.errors.artist ? <p className="text-danger">{this.state.errors.artist}</p> : ''}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="form-group col-sm-6">
-                                    <label for="album">Album</label>
-                                    <input type="text" className="form-control" name="album" onChange={this.handleChange} value={this.state.album} />
-                                </div>
-                                <div className="form-group col-sm-6">
-                                    <label for="release_date">Release Date</label>
-                                    <input type="date" className="form-control" name="release_date" onChange={this.handleChange} value={this.state.release_date} />
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-primary">Submit Changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                
                 </div>
             </div>
         )

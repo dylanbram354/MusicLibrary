@@ -78,7 +78,7 @@ class App extends Component {
                     </div>
                     : 
                     <h3 className="text-center">Generating table...</h3>
-                    }
+                }
                 {this.state.filtered ? 
                     <div className="d-flex justify-content-center mt-5">
                         <button className="btn btn-success" onClick={() => this.getAllMusic()}>Go Back</button>
